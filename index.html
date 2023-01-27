@@ -20,18 +20,17 @@
     <link rel="icon" type="image/x-icon" href="img/0.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="funct.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="funct.js"></script>
   </head>
   <body>
-    <section class="hero is-dark">
+    <section class="hero is-dark" id="banner">
       <div class="hero-body has-text-centered">
         <h1 class="title">
-          Combat Calculator
+          Digital Battlewheel
         </h1>
         <p class="subtitle">
-          for Dune (2019)
+          Combat Strength Calculator for Dune (2019)
         </p>
       </div>
     </section>
@@ -69,26 +68,32 @@
           </div>
           <br>
           <div class="columns is-multiline is-mobile has-text-centered">
+		  
             <div class="column"></div>
+			
             <div class="column is-2-tablet is-one-quarter-mobile is-hidden" id="forces-column">
               <div class="field has-text-centered">
                 <input class="input is-rounded is-medium has-text-centered" type="number" step="1" min="0" max="20" name="forces" id="forces">
                 <label id="forces-label" class="label" for="forces">Forces</label>
               </div>
             </div>
+			
             <div class="column is-2-tablet is-one-quarter-mobile is-hidden" id="stars-column">
               <div class="field has-text-centered">
                 <input class="input is-rounded is-medium has-text-centered" type="number" step="1" min="0" max="0" name="stars" id="stars">
                 <label id="stars-label" class="label" for="stars"></label>
               </div>
             </div>
+			
             <div class="column is-2-tablet is-one-quarter-mobile is-hidden" id="spice-column">
               <div class="field has-text-centered">
                 <input class="input is-rounded is-medium has-text-centered" type="number" step="1" min="0" max="0" name="spice" id="spice">
                 <label id="spice-label" class="label" for="spice">Spice</label>
               </div>
             </div>
+			
             <div class="column"></div>
+			
           </div>
           <div class="is-hidden" id="karamaed-container">
             <center>
@@ -105,14 +110,164 @@
             <div class="column is-2-tablet is-one-third-mobile is-hidden" id="strength-column">
               <div class="field has-text-centered">
                 <input class="input is-rounded is-medium has-text-centered" type="number" min="0" step="0.5" name="strength" id="strength" value="0" readonly>
-                <label id="strength-label" class="label" for="strength">Strength</label>
+                <label id="strength-label" class="label" for="strength">Dialed Strength</label>
               </div>
             </div>
             <div class="column"></div>
           </div>
+		  <div class="columns is-mobile mt-3">
+            <div class="column"></div>
+            <div class="column is-2-tablet is-one-third-mobile is-hidden" id="total-strength-column">
+              <div class="field has-text-centered">
+                <input class="input is-rounded is-medium has-text-centered" type="number" min="0" step="0.5" name="total-strength" id="total-strength" value="0" readonly>
+                <label id="total-strength-label" class="label" for="total-strength">Total Strength</label>
+              </div>
+            </div>
+            <div class="column"></div>
+          </div>
+		<div class="grid-container is-hidden" id="no-leader-column">
+		<div class="grid-item">
+			  <img class="is-hidden" src="img/leaders/leader-killed.png" width="50" height="50" id="leader-killed-button" onclick="leaderclick(99)">
+			  </div>
+              <div class="grid-item" >
+			  <img src="img/leaders/no-leader.png" id="no-leader-button" width="100" height="100" onclick="noleaderclick()">
+			</div>
+			
+			
+            </div>
+		<div class="grid-container is-hidden" id="leader-columns">
+            <div class="grid-item" id="leader1-column">
+			   <img src="" id="leader1-button" width="100" height="100" onclick="leaderclick(1)">
+            </div>
+            <div class="grid-item" id="leader2-column">
+			 <img src="" id="leader2-button" width="100" height="100" onclick="leaderclick(2)">
+            </div>
+            <div class="grid-item" id="leader3-column">
+			  <img src="" id="leader3-button" width="100" height="100" onclick="leaderclick(3)">
+			</div>
+			<div class="grid-item" id="leader4-column">
+			  <img src="" id="leader4-button" width="100" height="100" onclick="leaderclick(4)">
+			</div>
+			<div class="grid-item" id="leader5-column">
+			 <img src="" id="leader5-button" width="100" height="100" onclick="leaderclick(5)">
+            </div>
+			  <div class="grid-item is-hidden" id="leader6-column">
+			 <img src="" id="leader6-button" width="100" height="100" onclick="leaderclick(6)">
+			</div>
+			</div>
+			<div class="grid-container" >
+			<div class="grid-item is-hidden" id="cheap-hero-column">
+			<img src="img/leaders/leader-0.png" width="100" height="100" id="leader0-button" onclick="leaderclick(0)">
+			</div>
+			<div class="grid-item is-hidden" id="captured-leader-column">
+			 <img src="img/leaders/captured-leader.png" width="100" height="100" id="captured-leader-button" onclick="leaderclick(10)">
+			</div>
+		<div class="column"></div>
+		</div>
+		<div class="grid-container is-hidden" id="faction-grid">
+		<div class="grid-item" id="faction1-column">
+				<img src="img/1.png" id="faction1-button" width="100" height="100" onclick="factionclick(1)">
+		</div>
+		<div class="grid-item" id="faction2-column">
+				<img src="img/2.png" id="faction2-button" width="100" height="100" onclick="factionclick(2)">
+		</div>
+		<div class="grid-item" id="faction3-column">
+				<img src="img/3.png" id="faction3-button" width="100" height="100" onclick="factionclick(3)">
+		</div>
+		<div class="grid-item" id="faction4-column">
+				<img src="img/4.png" id="faction4-button" width="100" height="100" onclick="factionclick(4)">
+		</div>
+		<div class="grid-item" id="faction6-column">
+				<img src="img/6.png" id="faction6-button" width="100" height="100" onclick="factionclick(6)">
+		</div>
+		<div class="grid-item" id="faction7-column">
+				<img src="img/7.png" id="faction7-button" width="100" height="100" onclick="factionclick(7)">
+		</div>
+		<div class="grid-item" id="faction8-column">
+				<img src="img/8.png" id="faction8-button" width="100" height="100" onclick="factionclick(8)">
+		</div>
+		<div class="grid-item" id="faction9-column">
+				<img src="img/9.png" id="faction9-button" width="100" height="100" onclick="factionclick(9)">
+		</div>
+		<div class="grid-item" id="faction10-column">
+				<img src="img/10.png" id="faction10-button" width="100" height="100" onclick="factionclick(10)">
+		</div>
+		</div>
+		<div class="columns is-multiline is-mobile has-text-centered is-hidden" id="treachery-columns">
+			<div class="column"></div>
+			<div class="column is-narrow" id="weapon-column">
+				<img class="is-hidden" src="" id="weapon-icon" width="50" height="50">
+				<img class="is-hidden" src="" id="weapon-icon2" width="50" height="50">
+				<label class="label is-hidden" id="weapon-icon-label"></label>
+				<div class="field has-text-centered">
+					<label class="label" for="weapon">Weapon</label>
+					<div class="select is-rounded">
+						<select class="has-text-centered" name="weapon" id="weapon">
+							<option value="0">No Weapon</option>
+							<option value="1">Crysknife</option>
+							<option value="2">Hunter Seeker</option>
+							<option value="3">Maula Pistol</option>
+							<option value="4">Slip Tip</option>
+							<option value="5">Stunner</option>
+							<option value="6">Basilia Weapon</option>
+							<option value="7">Chaumas</option>
+							<option value="8">Chaumurky</option>
+							<option value="9">Ellaca Drug</option>
+							<option value="10">Gom Jabbar</option>
+							<option value="11">Poison Tooth</option>
+							<option value="12">Artillery Strike</option>
+							<option value="13">Lasgun</option>
+							<option value="14">Poison Blade</option>
+							<option value="15">Weirding Way</option>
+							<option value="16">Chemistry</option>
+							<option value="17">Baliset (Worthless)</option>
+							<option value="18">Jubba Cloak (Worthless)</option>
+							<option value="19">Kull Wahad (Worthless)</option>
+							<option value="20">Kulon (Worthless)</option>
+							<option value="21">La, La, La (Worthless)</option>
+							<option value="22">Trip to Gamont (Worthless)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="column is-narrow" id="defense-column">
+				<img class="is-hidden" src="" id="defense-icon" width="50" height="50">
+				<img class="is-hidden" src="" id="defense-icon2" width="50" height="50">
+				<label class="label is-hidden" id="defense-icon-label"></label>
+				<div class="field has-text-centered">
+					<label class="label" for="defense">Defense</label>
+					<div class="select is-rounded">
+						<select class="has-text-centered" name="defense" id="defense">
+							<option value="0">No Defense</option>
+							<option value="1">Shield</option>
+							<option value="2">Snooper</option>
+							<option value="3">Chemistry</option>
+							<option value="4">Shield Snooper</option>
+							<option value="5">Weirding Way</option>
+							<option value="6">Baliset (Worthless)</option>
+							<option value="7">Jubba Cloak (Worthless)</option>
+							<option value="8">Kull Wahad (Worthless)</option>
+							<option value="9">Kulon (Worthless)</option>
+							<option value="10">La, La, La (Worthless)</option>
+							<option value="11">Trip to Gamont (Worthless)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			 <div class="column"></div>
+		</div>
         </form>
       </div>
     </section>
-    <section class="section"></section>
+	<section class="footer is-dark" id="footer">
+      <div class="hero-body has-text-centered">
+        <p class="subtitle">
+          Find this on <a href="https://github.com/davidscheele/dune-combat-calculator">GitHub</a><br>
+		  Leave suggestions in the comments<br>
+		  Original calculator by <a href="https://github.com/Erelyks">Erelyks</a><br>
+		  Leaders and treachery card functionality added by <a href="https://github.com/davidscheele">davidscheele</a>
+        </p>
+      </div>
+    </section>
   </body>
 </html>
